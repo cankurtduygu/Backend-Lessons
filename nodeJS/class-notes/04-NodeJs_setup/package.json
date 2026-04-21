@@ -1,0 +1,21 @@
+{
+  "name": "04-nodejs_setup",
+  "version": "1.0.0",
+  "description": "-- # NodeJS",
+  "keywords": [
+    "nodjes",
+    "express",
+    "js"
+  ],
+  "license": "ISC",
+  "author": "ondia",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
