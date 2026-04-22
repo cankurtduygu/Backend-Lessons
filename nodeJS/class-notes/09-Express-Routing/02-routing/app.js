@@ -66,7 +66,7 @@ app.get(/list$/, (req, res) => {
 
 
 
-// Filtreleme
+//! Filtreleme
 
 app.get('/ara', (req, res) => {
   console.log('Query:', req.query);
@@ -84,7 +84,11 @@ app.get('/ara', (req, res) => {
   res.json(sonuc);
 });
 
-// Yeni Ürün Ekleme POST
+
+
+
+
+//! Yeni Ürün Ekleme POST
 app.post('/urunler', (req, res) => {
   console.log('body:', req.body);
   const { isim, fiyat, kategori } = req.body;
