@@ -1,0 +1,15 @@
+{
+  "name": "12-Todo-Sequelize",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.20.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^6.0.1"
+  }
+}
