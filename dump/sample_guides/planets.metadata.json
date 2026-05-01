@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"4a443ca354e244fdb63550d6bdc73488","collectionName":"planets","type":"collection"}
