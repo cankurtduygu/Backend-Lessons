@@ -1,15 +1,39 @@
 @baseUrl = http://127.0.0.1:8000
 
-# @name home-path
+# @name home
 GET {{baseUrl}}
 
+###
+
+# @name categoryList
+get {{baseUrl}}/blogs/categories
 
 ###
 
-# @name posts
-POST {{baseUrl}}
+# @name categoryCreate
+post {{baseUrl}}/blogs/categories
+Content-Type: application/json
+
+{
+    "name": "Category c"
+}
 
 ###
-# @name categories
 
-GET {{baseUrl}}/blogs/categories
+# @name categoryRead
+get {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+
+###
+
+# @name categoryUpdate
+put {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "Category abc"
+}
+
+###
+
+# @name categoryDelete
+delete {{baseUrl}}/blogs/categories/69f86bf22265bbd9fe6122e9
