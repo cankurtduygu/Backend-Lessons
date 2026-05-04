@@ -4,29 +4,26 @@
 GET {{baseUrl}}
 
 ###
-
 # @name categoryList
 get {{baseUrl}}/blogs/categories
 
 ###
-
 # @name categoryCreate
 post {{baseUrl}}/blogs/categories
 Content-Type: application/json
 
 {
-    "name": "Category c"
+    "name": "Category a"
 }
 
 ###
-
 # @name categoryRead
-get {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+
+get {{baseUrl}}/blogs/categories/69f8b169335383781fc86c35
 
 ###
-
 # @name categoryUpdate
-put {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+put {{baseUrl}}/blogs/categories/69f8b169335383781fc86c35
 Content-Type: application/json
 
 {
@@ -34,6 +31,40 @@ Content-Type: application/json
 }
 
 ###
-
 # @name categoryDelete
-delete {{baseUrl}}/blogs/categories/69f86bf22265bbd9fe6122e9
+delete {{baseUrl}}/blogs/categories/69f8b169335383781fc86c35
+
+
+###
+# @name postList
+get {{baseUrl}}/blogs/posts
+
+###
+# @name postCreate
+post {{baseUrl}}/blogs/posts
+Content-Type: application/json
+
+{
+    "title": "Bu benim postum 2",
+    "content": "bu postu ben olusturum ehuehu2",
+    "categoryId": "69f86a53074f17c51b56398c"
+}
+
+
+###
+# @name cpostRead
+get {{baseUrl}}/blogs/posts/69f8ec909ed99ad09d758efb
+
+###
+# @name postUpdate
+put {{baseUrl}}/blogs/posts/69f8ec909ed99ad09d758efb
+Content-Type: application/json
+
+{
+    "title": "Bu benim postum degisti",
+    "content": "bu postu ben olusturum ehuehu degistirdim"
+}
+
+###
+# @name categoryDelete
+delete {{baseUrl}}/blogs/posts/69f8f5a035505fb8a5a703ac

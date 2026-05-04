@@ -1,9 +1,11 @@
-"use strict";
+'use strict';
 /* -------------------------------------------------------
     EXPRESSJS - BLOG Project with Mongoose
+//~ Veri yapisi tanimlanacak.DB nasil olacak burda belirlenecek.
 ------------------------------------------------------- */
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const { create } = require('../controllers/blogController');
 
 //* blogCategory Schema
 
@@ -12,21 +14,47 @@ const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema(
   {
     // _id
-
     name: {
       type: String,
       trim: true,
       required: true,
     },
   },
-  { collection: "blogCategories" },
+  { collection: 'blogCategories' }
 );
 
-// Set model
-const Category = mongoose.model("Category", categorySchema);
+// todo Set model
+//~ semayi modele ceviriyoruz. model icindeki category model adi categorySchema daha önceden tanimladigimiz schema
+//~ const Category dedigimiz yer js icinde bir isim verdik. Bu modeli bu isim ile kullaniyoruz.
+//~ mongoose.model(...) bize DB ile konusan bir obje verir. Biz bunu alip Category deiskenine koyuyoruz.Category sadece verid egil funclari olan obje
+//!Burda semayi olusturarak mongoDB ile konusan model olustururoyuz.
+const Category = mongoose.model('Category', categorySchema);
 
-module.exports = { Category };
+const postSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    content: {
+      type: String,
+    },
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,//~ burasi baska bir dokumentin ID'si.
+      ref: "Category", //~ burasi populate icin hangi modele bagli onu söylüyor.
+      required: true,
+    },
 
+  },
+  {
+    collection: 'blogPost',
+    timestamps: true,
+  }
+);
+const Post = mongoose.model('Post', postSchema);
+
+module.exports = { Category, Post };
 
 /* -------------------------------------------------------*
 //* Sample
