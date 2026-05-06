@@ -26,6 +26,9 @@ app.all("/", (req, res) => {
 // blog route
 app.use(require("./src/routes/blogRouter"));
 
+// user route
+app.use(require("./src/routes/userRouter"));
+
 /* ------------------------------------ */
 // Error handler
 app.use(require("./src/middlewares/errorHandler"));

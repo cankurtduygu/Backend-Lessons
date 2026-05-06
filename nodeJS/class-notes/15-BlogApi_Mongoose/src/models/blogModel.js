@@ -39,6 +39,8 @@ const postSchema = new mongoose.Schema(
     },
     content: {
       type: String,
+      trim:true,
+      required: true
     },
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,//~ burasi baska bir dokumentin ID'si.

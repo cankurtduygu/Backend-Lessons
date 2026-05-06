@@ -52,7 +52,7 @@ Content-Type: application/json
 
 
 ###
-# @name cpostRead
+# @name postRead
 get {{baseUrl}}/blogs/posts/69f8ec909ed99ad09d758efb
 
 ###
@@ -68,3 +68,43 @@ Content-Type: application/json
 ###
 # @name categoryDelete
 delete {{baseUrl}}/blogs/posts/69f8f5a035505fb8a5a703ac
+
+
+### USERS ###
+
+# @name userList
+get {{baseUrl}}/blogs/users
+
+###
+
+# @name userCreate
+post {{baseUrl}}/blogs/users
+Content-Type: application/json
+
+{
+    "firstName": "user f a",
+    "lastName": "user 1 a",
+    "email": "o@gmail.com",
+    "password": "user  p a"
+
+}
+
+###
+
+# @name userRead
+get {{baseUrl}}/blogs/users/69f86c482265bbd9fe6122eb
+
+###
+
+# @name userUpdate
+put {{baseUrl}}/blogs/users/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "user abc"
+}
+
+###
+
+# @name userDelete
+delete {{baseUrl}}/blogs/users/69f86bf22265bbd9fe6122e9

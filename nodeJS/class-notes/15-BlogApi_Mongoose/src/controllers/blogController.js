@@ -30,16 +30,35 @@ module.exports = {
 
 
   //~ category read
-  read: async (req, res) => {
-    // await Category.findOne({...filter})
-    // const result = await Category.findOne({_id: req.params.id})
+  // read: async (req, res) => {
+  //   // await Category.findOne({...filter})
+  //   // const result = await Category.findOne({_id: req.params.id})
+  //   const result = await Category.findById(req.params.id);
+
+
+
+  //   res.status(200).send({
+  //     error: false,
+  //     result,
+  //   });
+  // },
+
+  read: async (req, res, next) => {
+  try {
     const result = await Category.findById(req.params.id);
+
+    if (!result) {
+      return res.status(404).send({ error: true, message: "Category not found" });
+    }
 
     res.status(200).send({
       error: false,
       result,
     });
-  },
+  } catch (err) {
+    next(err);
+  }
+},
 
 
 //! UPDATE
@@ -80,7 +99,8 @@ module.exports = {
 /*************************** POST ********************************** */
   //~ all post list
   list: async (req, res) => {
-    const result = await Post.find();
+    // await Post.find({..filter}, {select})
+    const result = await Post.find({}, { __v: 0}).populate('categoryId', '-__v')
 
     res.status(200).send({
       error: false,
@@ -99,16 +119,33 @@ module.exports = {
   },
 
   //~ post read
-  read: async (req, res) => {
-    // await Category.findOne({...filter})
-    // const result = await Category.findOne({_id: req.params.id})
-    const result = await Post.findById(req.params.id);
+  // read: async (req, res) => {
+  //   // await Category.findOne({...filter})
+  //   // const result = await Category.findOne({_id: req.params.id})
+  //   const result = await Post.findById(req.params.id);
+
+  //   res.status(200).send({
+  //     error: false,
+  //     result,
+  //   });
+  // },
+
+  read: async (req, res, next) => {
+  try {
+    const result = await Category.findById(req.params.id);
+
+    if (!result) {
+      return res.status(404).send({ error: true, message: "Category not found" });
+    }
 
     res.status(200).send({
       error: false,
       result,
     });
-  },
+  } catch (err) {
+    next(err);
+  }
+},
 
   //~ post update
   update: async (req, res) => {
@@ -118,7 +155,7 @@ module.exports = {
     res.status(200).send({
       error: false,
       result,
-      new: await Post.findById(req.params.id)
+      // new: await Post.findById(req.params.id)
     });
   },
 
