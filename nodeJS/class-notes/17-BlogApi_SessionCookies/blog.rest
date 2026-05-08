@@ -1,0 +1,153 @@
+@baseUrl = http://127.0.0.1:8000
+
+# @name home
+GET {{baseUrl}}
+
+###
+# @name register
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "firstName": "testFirstName",
+    "lastName": "testLastName",
+    "email": "test4@gmail.com",
+    "password": "test4Password"
+}
+
+###
+# @name login
+POST {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+   "email": "test4@gmail.com",
+   "password": "test4Password",
+   "rememberMe": true
+}
+###
+# @name logout
+POST {{baseUrl}}/users/logout
+
+
+###
+
+# @name categoryList
+get {{baseUrl}}/blogs/categories
+
+###
+
+# @name categoryCreate
+post {{baseUrl}}/blogs/categories
+Content-Type: application/json
+
+{
+    "name": "Category c"
+}
+
+###
+
+# @name categoryRead
+get {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+
+###
+
+# @name categoryUpdate
+put {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "Category abc"
+}
+
+###
+
+# @name categoryDelete
+delete {{baseUrl}}/blogs/categories/69f86bf22265bbd9fe6122e9
+
+### POSTS ####
+
+# @name postList
+get {{baseUrl}}/blogs/posts
+# ?published=true
+# ?filter[userId]=69fd959a73e88bd2d691af32
+# &filter[published]=true
+?search[title]=test 4
+# &filter[content]=test 4 content
+# &categoryId=..1156
+# &title=test 0
+# &page=2
+# &limit=20
+# &content=test 0 content
+# &sortBy=createdAt
+# &sort=desc
+
+###
+
+# @name postCreate
+post {{baseUrl}}/blogs/posts
+Content-Type: application/json
+
+{
+    "categoryId": "69f86a4e2540a97ae5d0a53a",
+    "title": "Post - 3",
+    "content": "Post 3 Content"
+}
+
+###
+
+# @name postRead
+get {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+
+###
+
+# @name postUpdate
+put {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+Content-Type: application/json
+
+{
+    "title": "updated"
+}
+
+###
+
+# @name postDelete
+delete {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+
+### USERS ###
+
+# @name userList
+get {{baseUrl}}/users
+
+###
+
+# @name userCreate
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "firstName": "user f a ",
+    "lastName": "user l a",
+    "email": "v@gmail.com",
+    "password": "user p b"
+}
+
+###
+
+# @name userRead
+get {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+
+###
+
+# @name userUpdate
+put {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "user abc"
+}
+
+###
+
+# @name userDelete
+delete {{baseUrl}}/users/69f9beb2d68f4aadf83f72a2
