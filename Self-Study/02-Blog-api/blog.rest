@@ -1,14 +1,45 @@
-@baseUrl = http://127.0.0.1:3000
+@baseUrl = http://127.0.0.1:8000
 
 # @name home
 GET {{baseUrl}}
 
 ###
 
+
+# @name register
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "firstName": "testkkkk",
+    "lastName": "testLkkk",
+    "email": "test1kkk@gmail.com",
+    "password": "test1kkk"
+}
+
+### 
+
+# @name login
+post {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+    "email": "test1kkk@gmail.com",
+    "password": "test1kkk",
+    "rememberMe": true
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/users/logout
+
+###
+
 # @name categoryList
 get {{baseUrl}}/blogs/categories
 
-###
+###"
 
 # @name categoryCreate
 post {{baseUrl}}/blogs/categories
@@ -37,3 +68,95 @@ Content-Type: application/json
 
 # @name categoryDelete
 delete {{baseUrl}}/blogs/categories/6a015e09241f7697ebe1f5e5
+
+
+
+
+
+
+
+
+### POSTS ####
+
+# @name postList
+get {{baseUrl}}/blogs/posts
+
+###
+
+
+
+# @name postCreate
+post {{baseUrl}}/blogs/posts
+Content-Type: application/json
+
+{
+    "categoryId": "6a015e15241f7697ebe1f5e6",
+    "title": "Post 1",
+    "content": "Post1 Content"
+}
+
+###
+
+# @name postRead
+get {{baseUrl}}/blogs/posts/6a01e2892d4821683876ac6d
+
+###
+
+# @name postUpdate
+put {{baseUrl}}/blogs/posts/6a02407451ba5d3ff0eb2d03
+Content-Type: application/json
+
+{
+    "title": "post 4 öö updatedddd"
+}
+
+###
+
+# @name postDelete
+delete {{baseUrl}}/blogs/posts/6a02407451ba5d3ff0eb2d03
+
+
+
+
+
+
+
+
+### USERS ###
+
+# @name userList
+get {{baseUrl}}/users
+
+###
+
+# @name userCreate
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    # "firstName": "user f a ",
+    # "lastName": "user l a",
+    "email": "v@gmail.com",
+    "password": "user p b"
+}
+
+###
+
+# @name userRead
+get {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+
+###
+
+# @name userUpdate
+put {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "user abc"
+}
+
+###
+
+# @name userDelete
+delete {{baseUrl}}/users/69f86bf22265bbd9fe6122e9
+

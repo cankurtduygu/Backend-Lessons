@@ -1,6 +1,7 @@
 "use strict";
 
 const Personnel = require("../models/personnel.model");
+const { CustomError } = require("../utils");
 
 module.exports = {
   list: async (req, res) => {
@@ -16,8 +17,9 @@ module.exports = {
     const result = await Personnel.findById(req.params.id);
 
     if (!result) {
-      res.errStatusCode = 404;
-      throw new Error("Data is not found.");
+      // res.errStatusCode = 404;
+      // throw new Error("Data is not found.");
+      throw new CustomError("Data is not found.", 404);
     }
 
     res.status(200).send({
@@ -45,8 +47,9 @@ module.exports = {
     const { deletedCount } = await Personnel.deleteOne({ _id: req.params.id });
 
     if (!deletedCount) {
-      res.errStatusCode = 404;
-      throw new Error("Data is not found or already deleted.");
+      // res.errStatusCode = 404;
+      // throw new Error("Data is not found or already deleted.");
+      throw new CustomError("Data is not found or already deleted.", 404);
     }
 
     res.sendStatus(204);

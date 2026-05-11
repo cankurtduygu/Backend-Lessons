@@ -34,8 +34,10 @@ app.all("/", (req, res) => {
   });
 });
 
+app.use("/auth", require("./src/routes/auth.route"));
 app.use("/departments", require("./src/routes/department.route"));
 app.use("/personnels", require("./src/routes/personnel.route"));
+
 
 /* ----------------------------------------- */
 // Not found route

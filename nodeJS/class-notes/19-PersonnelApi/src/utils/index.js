@@ -11,4 +11,14 @@ const passwordEncrypte = function (password) {
   return pbkdf2Sync(password, salt, iteration, keylen, digest).toString("hex");
 };
 
-module.exports = { passwordEncrypte };
+
+class CustomError extends Error {
+  name = "CustomError";
+   constructor(message, statusCode) {
+      super(message);
+      this.statusCode = statusCode;
+
+   }
+}
+
+module.exports = { passwordEncrypte, CustomError };

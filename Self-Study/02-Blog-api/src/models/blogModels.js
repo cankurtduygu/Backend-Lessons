@@ -20,18 +20,16 @@ const Category = mongoose.model("Category", CategorySchema);
 const PostSchema = new mongoose.Schema(
   {
     categoryId: {
-      // default relation: ManyToOne
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,
-      // unique: true // converts to OneToOne relation.
     },
 
-    // userId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    //   required: true,
-    // },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     
     title: {
       type: String,

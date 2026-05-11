@@ -1,7 +1,9 @@
 "use strict";
 
 module.exports = (err, req, res, next) => {
-  const statusCode = res.errStatusCode ?? 500;
+
+  console.error(err);
+  const statusCode = err.statusCode ?? 500;
 
   res.status(statusCode).send({
     error: true,
