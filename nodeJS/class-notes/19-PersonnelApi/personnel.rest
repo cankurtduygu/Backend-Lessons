@@ -12,7 +12,8 @@ Content-Type: application/json
 {
     "firstName": "testF",
     "lastName": "testL",
-    "email": "test1@test.com"
+    "email": "test1@test.com",
+    "password": "12345678"
 }
 
 ### 
@@ -22,7 +23,7 @@ post {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@gmail.com",
+    # "email": "test@gmail.com",
     "username": "test",
     "password": "test"
 }
@@ -50,7 +51,7 @@ Content-Type: application/json
 ###
 
 # @name departmentRead
-get {{baseUrl}}/departments/6a019870166b08a7baf574eb
+get {{baseUrl}}/departments/6a019870166b08a7baf57413
 
 ###
 
@@ -84,7 +85,7 @@ post {{baseUrl}}/personnels
 Content-Type: application/json
 
 {
-    "departmentId": "6a01a670a540272acd85269d",
+    "departmentId": "6a01a04040a52a22da417b78",
     "username": "test",
     "password": "test", 
     "firstName": "test", 

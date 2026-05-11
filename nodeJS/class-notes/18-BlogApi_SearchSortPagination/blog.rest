@@ -1,0 +1,139 @@
+@baseUrl = http://127.0.0.1:8000
+
+# @name home
+GET {{baseUrl}}
+
+### 
+
+# @name register
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "firstName": "testF",
+    "lastName": "testL",
+    "email": "test1@test.com",
+    "password": "12345678"
+}
+
+### 
+
+# @name login
+post {{baseUrl}}/users/login
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "password": "12345678",
+    "rememberMe": true
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/users/logout
+
+###
+
+# @name categoryList
+get {{baseUrl}}/blogs/categories
+
+###
+
+# @name categoryCreate
+post {{baseUrl}}/blogs/categories
+Content-Type: application/json
+
+{
+    "name": "Category c"
+}
+
+###
+
+# @name categoryRead
+get {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+
+###
+
+# @name categoryUpdate
+put {{baseUrl}}/blogs/categories/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "Category abc"
+}
+
+###
+
+# @name categoryDelete
+delete {{baseUrl}}/blogs/categories/69f86bf22265bbd9fe6122e9
+
+### POSTS ####
+
+# @name postList
+get {{baseUrl}}/blogs/posts
+?filter[published]=false
+&page=2
+&limit=10
+# &search[title]=test 4
+# &sort[createdAt]=desc
+
+###
+
+# @name postCreate
+post {{baseUrl}}/blogs/posts
+Content-Type: application/json
+
+{
+    "categoryId": "69fd95729766ac1513571155",
+    "title": "Post - 2",
+    "content": "Post 2 Content"
+}
+
+###
+
+# @name postRead
+get {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+
+###
+
+# @name postUpdate
+put {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+Content-Type: application/json
+
+{
+    "title": "updated"
+}
+
+###
+
+# @name postDelete
+delete {{baseUrl}}/blogs/posts/69f9a21017bad8c5e92e01d9
+
+### USERS ###
+
+# @name userList
+get {{baseUrl}}/users
+# ?page=1
+# &limit=1
+# ?search[email]=test1
+
+###
+
+# @name userRead
+get {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+
+###
+
+# @name userUpdate
+put {{baseUrl}}/users/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "user abc"
+}
+
+###
+
+# @name userDelete
+delete {{baseUrl}}/users/69f86bf22265bbd9fe6122e9

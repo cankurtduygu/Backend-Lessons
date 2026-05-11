@@ -1,8 +1,7 @@
-"use strict";
-
+// Password Encryption:
+// https://nodejs.org/docs/latest/api/crypto.html#cryptopbkdf2syncpassword-salt-iterations-keylen-digest
 const { pbkdf2Sync } = require("node:crypto");
 
-// Password Encryption:
 const passwordEncrypte = function (password) {
   // require('crypto').randomBytes(32).toString('hex')
   const salt = process.env.SECRET_KEY;
@@ -10,15 +9,8 @@ const passwordEncrypte = function (password) {
   const keylen = parseInt(process.env.PASS_KEYLEN, 10);
   const digest = process.env.PASS_DIGEST;
 
+  // pbkdf2Sync returns buffer string.
   return pbkdf2Sync(password, salt, iteration, keylen, digest).toString("hex");
 };
 
-class CustomError extends Error {
-  name = "CustomError";
-  constructor(message, statusCode) {
-    super(message);
-    this.statusCode = statusCode;
-  }
-}
-
-module.exports = { passwordEncrypte, CustomError };
+module.exports = { passwordEncrypte };
