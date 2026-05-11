@@ -1,0 +1,39 @@
+@baseUrl = http://127.0.0.1:3000
+
+# @name home
+GET {{baseUrl}}
+
+###
+
+# @name categoryList
+get {{baseUrl}}/blogs/categories
+
+###
+
+# @name categoryCreate
+post {{baseUrl}}/blogs/categories
+Content-Type: application/json
+
+{
+    "name": "Category C"
+}
+
+###
+
+# @name categoryRead
+get {{baseUrl}}/blogs/categories/6a015e09241f7697ebe1f5e5
+
+###
+
+# @name categoryUpdate
+put {{baseUrl}}/blogs/categories/6a015e09241f7697ebe1f5e5
+Content-Type: application/json
+
+{
+    "name": "Category updated abc"
+}
+
+###
+
+# @name categoryDelete
+delete {{baseUrl}}/blogs/categories/6a015e09241f7697ebe1f5e5

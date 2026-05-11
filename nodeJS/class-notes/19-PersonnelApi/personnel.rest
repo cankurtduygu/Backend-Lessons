@@ -1,0 +1,113 @@
+@baseUrl = http://127.0.0.1:8000
+
+# @name home
+GET {{baseUrl}}
+
+### 
+
+# @name register
+post {{baseUrl}}/personnels
+Content-Type: application/json
+
+{
+    "firstName": "testF",
+    "lastName": "testL",
+    "email": "test1@test.com",
+    "password": "12345678"
+}
+
+### 
+
+# @name login
+post {{baseUrl}}/personnels/login
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "password": "12345678",
+    "rememberMe": true
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/personnels/logout
+
+###
+
+# @name departmentList
+get {{baseUrl}}/departments
+
+###
+
+# @name departmentCreate
+post {{baseUrl}}/departments
+Content-Type: application/json
+
+{
+    "name": "department a"
+}
+
+###
+
+# @name departmentRead
+get {{baseUrl}}/departments/6a019870166b08a7baf574eb
+
+###
+
+# @name departmentUpdate
+put {{baseUrl}}/departments/6a019870166b08a7baf574eb
+Content-Type: application/json
+
+{
+    "name": "department abc"
+}
+
+###
+
+# @name departmentDelete
+delete {{baseUrl}}/departments/6a019867166b08a7baf574ea
+
+###
+
+# @name personnelList
+get {{baseUrl}}/personnels/
+
+###
+
+# @name personnelRead
+get {{baseUrl}}/personnels/69f86c482265bbd9fe6122eb
+
+###
+
+# @name personnelCreate
+post {{baseUrl}}/personnels
+Content-Type: application/json
+
+{
+    "departmentId": "6a01a670a540272acd85269d",
+    "username": "test",
+    "password": "test", 
+    "firstName": "test", 
+    "lastName": "test", 
+    "phone": "12345678901",
+    "email": "test@gmail.com",
+    "title": "tester",
+    "salary": "2000",
+    "description": "the best tester."
+}
+
+###
+
+# @name personnelUpdate
+put {{baseUrl}}/personnels/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "personnel abc"
+}
+
+###
+
+# @name personnelDelete
+delete {{baseUrl}}/personnels/69f86bf22265bbd9fe6122e9
