@@ -1,24 +1,24 @@
-"use strict";
+'use strict';
 
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   list,
   read,
   create,
   update,
   delete: deletee,
-} = require("../controllers/personnel.controller");
-const { isLogin, isAdmin, isAdminOrLead } = require("../middlewares/permissions");
-
-
+} = require('../controllers/personnel.controller');
+const { isLogin, isAdmin, isAdminOrLead} = require('../middlewares/permissions');
 
 // URL: /personnels
-router.route("/").get(isAdminOrLead, list).post(create);
+router.route('/')
+      .get(isLogin, isAdminOrLead, list)
+      .post(isLogin, isAdmin, create);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(isLogin, read)
-  .put(isAdminOrLead, update)
-  .delete(isAdmin, deletee);
+  .put(isLogin, isAdmin, update)
+  .delete(isLogin, isAdminOrLead, deletee);
 
 module.exports = router;

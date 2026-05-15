@@ -35,9 +35,9 @@ post {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "duyguLead@test.com",
-    "username": "duyguLead",
-    "password": "12341234"
+    "email": "duyguAdminLead@test.com",
+    "username": "duyguAdminLead",
+    "password": "1234512345"
 }
 
 ### 
@@ -103,17 +103,18 @@ Content-Type: application/json
 ###
 
 # @name personnelUpdate
-put {{baseUrl}}/personnels/69f86c482265bbd9fe6122eb
+put {{baseUrl}}/personnels/6a05af2d276bdea6cde901b0
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-    "name": "personnel abc"
+    "isLead": "true"
 }
 
 ###
 
 # @name personnelDelete
-delete {{baseUrl}}/personnels/6a05ac49a297656cadc6c776
+delete {{baseUrl}}/personnels/6a05aeddc7f9a7dc87b48798
 Authorization: {{token}}
 
 ###
