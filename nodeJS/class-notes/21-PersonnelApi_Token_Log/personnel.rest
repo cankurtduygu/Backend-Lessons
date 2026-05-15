@@ -1,0 +1,153 @@
+@baseUrl = http://127.0.0.1:8000
+
+@token = Token {{login.response.body.token}}
+
+# @name home
+GET {{baseUrl}}
+# Authorization: Token 04983fb1e43c4500fc538692d6b3224fcf476606ae1c77a6e50b612525b41ed6
+Authorization: {{token}}
+### 
+
+# @name register
+post {{baseUrl}}/personnels
+Content-Type: application/json
+
+{
+    "departmentId": "6a05aeddc7f9a7dc87b48795",
+    "username": "duyguLead",
+    "password": "12341234",
+    "firstName": "duyguLead",
+    "lastName": "cankurtLead",
+    "phone": "12345678969",
+    "email": "duyguLead@test.com",
+    "title": "software engineer",
+    "salary": "5000",
+    "description": "test description",
+    "isActive": "true",
+    "isAdmin": "false",
+    "isLead": "true"
+}
+
+### 
+
+# @name login
+post {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "duyguAdminLead@test.com",
+    "username": "duyguAdminLead",
+    "password": "1234512345"
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/auth/logout
+Authorization: {{token}}
+
+###
+
+# @name departmentList
+get {{baseUrl}}/departments
+
+###
+
+# @name departmentCreate
+post {{baseUrl}}/departments
+Content-Type: application/json
+
+{
+    "name": "department a"
+}
+
+###
+
+# @name departmentRead
+get {{baseUrl}}/departments/6a019870166b08a7baf57413
+
+###
+
+# @name departmentUpdate
+put {{baseUrl}}/departments/6a019870166b08a7baf574eb
+Content-Type: application/json
+
+{
+    "name": "department abc"
+}
+
+###
+
+# @name departmentDelete
+delete {{baseUrl}}/departments/6a019867166b08a7baf574ea
+
+###
+
+# @name personnelList
+get {{baseUrl}}/personnels/
+Authorization: {{token}}
+
+###
+
+# @name personnelRead
+get {{baseUrl}}/personnels/6a0316383eb7a524d959f1d2
+Authorization: {{token}}
+
+###
+
+# @name personnelCreate
+post {{baseUrl}}/personnels
+Content-Type: application/json
+
+
+###
+
+# @name personnelUpdate
+put {{baseUrl}}/personnels/6a05af2d276bdea6cde901b0
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "isLead": "true"
+}
+
+###
+
+# @name personnelDelete
+delete {{baseUrl}}/personnels/6a05aeddc7f9a7dc87b48798
+Authorization: {{token}}
+
+###
+
+# @name tokenList
+get {{baseUrl}}/tokens/
+
+###
+
+# @name tokenRead
+get {{baseUrl}}/tokens/69f86c482265bbd9fe6122eb
+
+###
+
+# @name tokenCreate
+post {{baseUrl}}/tokens
+Content-Type: application/json
+
+{
+    
+}
+
+###
+
+# @name tokenUpdate
+put {{baseUrl}}/tokens/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "personnel abc"
+}
+
+###
+
+# @name tokenDelete
+delete {{baseUrl}}/tokens/69f86bf22265bbd9fe6122e9
