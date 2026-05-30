@@ -40,7 +40,10 @@ const document = {
 	security: [{ Token: [] }, { Bearer: [] }],
 	definitions: {
 		// Models:
-		// "User": require('./src/models/user').schema.obj,
+		"User": require('./src/models/user').schema.obj,
+		"Topping": require('./src/models/topping').schema.obj,
+		"Pizza": require('./src/models/pizza').schema.obj,
+		"Order": require('./src/models/order').schema.obj
 	}
 }
 

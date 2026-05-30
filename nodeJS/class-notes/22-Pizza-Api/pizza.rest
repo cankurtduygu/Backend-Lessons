@@ -1,0 +1,180 @@
+@baseUrl = http://127.0.0.1:8000
+@token = Token {{login.response.body.token}}
+
+
+# admin - f9c19002645c2bc76e711a68bad298c891a8489b6022d7a1ce68c2e6325a3487
+# notAdmin - f2463e221cf2935aebb9cff21cb4a9bdade68607f948c4cfac9c6c78c360dd74
+
+
+# @name home
+GET {{baseUrl}}
+# Authorization: Token 2f33035db27dccd428c390d4949f9bd309293788d4ac6933afb2b1316b22b982
+
+### 
+
+# @name login
+post {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@test.com",
+    "password": "1234"
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/auth/logout
+Authorization: {{token}}
+
+###
+
+# @name departmentList
+get {{baseUrl}}/departments
+Authorization: {{token}}
+# Authorization: Token f2463e221cf2935aebb9cff21cb4a9bdade68607f948c4cfac9c6c78c360dd74
+# Authorization: Token f9c19002645c2bc76e711a68bad298c891a8489b6022d7a1ce68c2e6325a3487
+
+###
+
+# @name departmentCreate
+post {{baseUrl}}/departments
+Content-Type: application/json
+
+{
+    "name": "department a"
+}
+
+###
+
+# @name departmentRead
+get {{baseUrl}}/departments/6a019870166b08a7baf57413
+
+###
+
+# @name departmentUpdate
+put {{baseUrl}}/departments/6a019870166b08a7baf574eb
+Content-Type: application/json
+
+{
+    "name": "department abc"
+}
+
+###
+
+# @name departmentDelete
+delete {{baseUrl}}/departments/6a019867166b08a7baf574ea
+
+###
+
+# @name userList
+get {{baseUrl}}/users/
+Authorization: {{token}}
+
+###
+
+# @name userRead
+get {{baseUrl}}/users/6a01a22139ec49344f7857a8
+Authorization: {{token}}
+
+###
+
+# @name userCreate
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "email": "admin@test.com",
+    "password": "1234",
+    "isAdmin": true
+}
+
+
+###
+
+# @name userUpdate
+put {{baseUrl}}/users/6a030171c1c8a005b6a263a5
+Content-Type: application/json
+
+{
+    "isAdmin": true
+}
+
+###
+
+# @name userDelete
+delete {{baseUrl}}/users/69f86bf22265bbd9fe6122e9
+
+###
+
+# @name toppingList
+get {{baseUrl}}/toppings/
+
+###
+
+# @name toppingRead
+get {{baseUrl}}/toppings/69f86c482265bbd9fe6122eb
+
+###
+
+# @name toppingCreate
+post {{baseUrl}}/toppings
+Content-Type: application/json
+
+{
+    "name": "topping-3"
+}
+
+###
+
+# @name toppingUpdate
+put {{baseUrl}}/toppings/69f86c482265bbd9fe6122eb
+Content-Type: application/json
+
+{
+    "name": "user abc"
+}
+
+###
+
+# @name toppingDelete
+delete {{baseUrl}}/toppings/69f86bf22265bbd9fe6122e9
+
+###
+
+# @name pizzaList
+get {{baseUrl}}/pizzas/
+
+###
+
+# @name pizzaRead
+get {{baseUrl}}/pizzas/69f86c482265bbd9fe6122eb
+
+###
+
+# @name pizzaCreate
+post {{baseUrl}}/pizzas
+Content-Type: application/json
+
+{
+    "name": "pizza-A",
+    "image": "example-pizza.jpg",
+    "price": 20,
+    "toppingIds": ["6a1b32df4ad9ba7c0316e402","6a1b32e74ad9ba7c0316e403"]
+}
+
+###
+
+# @name pizzaUpdate
+put {{baseUrl}}/pizzas/6a1b37dd4ad9ba7c0316e406
+Content-Type: application/json
+
+{
+    "name": "pizza-ABC"
+}
+
+###
+
+# @name pizzaDelete
+delete {{baseUrl}}/pizzas/6a1b36b44ad9ba7c0316e405
