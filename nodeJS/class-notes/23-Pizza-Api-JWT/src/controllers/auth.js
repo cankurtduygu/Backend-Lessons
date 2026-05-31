@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 /* -------------------------------------------------------
 | FULLSTACK TEAM | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 
-const { CustomError } = require("../helpers");
+const { CustomError } = require('../helpers');
 const User = require('../models/user');
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   login: async (req, res) => {
@@ -27,8 +27,8 @@ module.exports = {
 
     if (!((username || email) && password))
       throw new CustomError(
-        "Username or email and password are required.",
-        401,
+        'Username or email and password are required.',
+        401
       );
 
     const user = await User.findOne({
@@ -36,9 +36,10 @@ module.exports = {
       password,
     });
 
-    if (!user) throw new CustomError("Wrong email/username or password", 401);
+    if (!user) throw new CustomError('Wrong email/username or password', 401);
 
-    if(!user.isActive) throw new CustomError('The user status is not active', 401);
+    if (!user.isActive)
+      throw new CustomError('The user status is not active', 401);
 
     // JWT
     const accessData = {
@@ -48,21 +49,25 @@ module.exports = {
       isAdmin: user.isAdmin,
     };
 
-     const access = jwt.sign(accessData, process.env.ACCESS_KEY, {
-        expiresIn: "1m",
-      });
+    //jwt.sign(payload, accessKey, options)
+    const access = jwt.sign(accessData, process.env.ACCESS_KEY, {
+      expiresIn: '1m',
+    });
 
+    const refresh = jwt.sign({ _id: user._id }, process.env.REFRESH_KEY, {
+      expiresIn: '1d',
+    });
 
     res.status(200).send({
-        error:false,
-        user
-    })
+      error: false,
+      bearer: {access, refresh},
+    });
   },
 
-  logout: (req, res)=>{
+  logout: (req, res) => {
     res.status(200).send({
-        error:false,
-        message: "Logout successfull."
-    })
-  }
+      error: false,
+      message: 'Logout successfull.',
+    });
+  },
 };

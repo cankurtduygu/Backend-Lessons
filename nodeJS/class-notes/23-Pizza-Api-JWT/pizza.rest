@@ -1,5 +1,5 @@
 @baseUrl = http://127.0.0.1:8000
-@token = Token {{login.response.body.token}}
+@accessToken = Bearer {{login.response.body.bearer.access}}
 
 
 # admin - f9c19002645c2bc76e711a68bad298c891a8489b6022d7a1ce68c2e6325a3487
@@ -25,57 +25,57 @@ Content-Type: application/json
 
 # @name logout
 post {{baseUrl}}/auth/logout
-Authorization: {{token}}
+Authorization: {{accessToken}}
 
 ###
 
-# @name departmentList
-get {{baseUrl}}/departments
-Authorization: {{token}}
+# @name orderList
+get {{baseUrl}}/orders
+Authorization: {{accessToken}}
 # Authorization: Token f2463e221cf2935aebb9cff21cb4a9bdade68607f948c4cfac9c6c78c360dd74
 # Authorization: Token f9c19002645c2bc76e711a68bad298c891a8489b6022d7a1ce68c2e6325a3487
 
 ###
 
-# @name departmentCreate
-post {{baseUrl}}/departments
+# @name orderCreate
+post {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-    "name": "department a"
+    "name": "order a"
 }
 
 ###
 
-# @name departmentRead
-get {{baseUrl}}/departments/6a019870166b08a7baf57413
+# @name orderRead
+get {{baseUrl}}/orders/6a019870166b08a7baf57413
 
 ###
 
-# @name departmentUpdate
-put {{baseUrl}}/departments/6a019870166b08a7baf574eb
+# @name orderUpdate
+put {{baseUrl}}/orders/6a019870166b08a7baf574eb
 Content-Type: application/json
 
 {
-    "name": "department abc"
+    "name": "order abc"
 }
 
 ###
 
-# @name departmentDelete
+# @name orderDelete
 delete {{baseUrl}}/departments/6a019867166b08a7baf574ea
 
 ###
 
 # @name userList
 get {{baseUrl}}/users/
-Authorization: {{token}}
+Authorization: {{accessToken}}
 
 ###
 
 # @name userRead
 get {{baseUrl}}/users/6a01a22139ec49344f7857a8
-Authorization: {{token}}
+Authorization: {{accessToken}}
 
 ###
 
