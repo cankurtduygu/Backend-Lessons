@@ -1,0 +1,43 @@
+@baseUrl = http://127.0.0.1:8000
+
+# @name home
+GET {{baseUrl}}
+
+###
+# @name userList
+get {{baseUrl}}/users/
+
+###
+# @name userRead
+get {{baseUrl}}/users/6a1cc54d48a4b414efae5f50
+
+###
+# @name userCreate
+post {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "username": "admin2",
+    "password": "1234",
+    "email": "admin2@test.com",
+    "firstName": "admin",
+    "lastName": "admin",
+    "isActive": true,
+    "isAdmin": true
+}
+
+
+###
+# @name userUpdate
+put {{baseUrl}}/users/6a1cc54d48a4b414efae5f50
+Content-Type: application/json
+
+{
+    "isAdmin": false
+}
+
+###
+# @name userDelete
+delete {{baseUrl}}/users/6a1cc54d48a4b414efae5f50
+
+###
