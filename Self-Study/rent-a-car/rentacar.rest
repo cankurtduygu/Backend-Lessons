@@ -3,6 +3,34 @@
 # @name home
 GET {{baseUrl}}
 
+@accessToken = Bearer {{login.response.body.bearer.access}}
+
+###
+# @name login
+post {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@test.com",
+    "password": "1234"
+}
+
+### 
+
+# @name logout
+post {{baseUrl}}/auth/logout
+Authorization: {{accessToken}}
+
+### 
+# @name refresh
+post {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTFjYzVjYzQ4YTRiNDE0ZWZhZTVmNTEiLCJpYXQiOjE3ODAyODEyOTIsImV4cCI6MTc4MDM2NzY5Mn0.pmxGcuVpdy8xDFCfzGvJPZtLD9tRmr-XqVeJC3aXajI"
+}
+
+
 ###
 # @name userList
 get {{baseUrl}}/users/
@@ -39,5 +67,25 @@ Content-Type: application/json
 ###
 # @name userDelete
 delete {{baseUrl}}/users/6a1cc54d48a4b414efae5f50
+
+###
+# @name carList
+GET {{baseUrl}}/cars
+Authorization: {{accessToken}}
+
+###
+# @name createCar
+POST {{baseUrl}}/cars
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+  "plateNumber": "PF-AA-123",
+  "brand": "BMW",
+  "model": "320i",
+  "year": 2022,
+  "isAutomatic": true,
+  "pricePerDay": 85
+}
 
 ###

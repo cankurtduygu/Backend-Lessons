@@ -13,7 +13,7 @@ const PORT = process.env?.PORT || 8000;
 app.use(express.json());
 
 // Auhentication:
-// app.use(require('./middlewares/authentication'));
+app.use(require('./middlewares/authentication'));
 
 // Query Handler
 app.use(require('./middlewares/queryHandler'));
