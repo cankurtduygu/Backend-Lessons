@@ -1,21 +1,20 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../state/hooks";
 import {
-  addTodo,
   selectTodo,
   setTodo,
   updateTodo,
 } from "../features/todoSlice";
-
+import { useTodos } from "../hooks/useTodo";
 
 export default function TodoForm() {
-
+  const { postTodo, putTodo } = useTodos();
 
   const todo = useAppSelector(selectTodo);
   // console.log(todo);
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const title = (e.currentTarget[0] as HTMLInputElement).value;
 
@@ -26,9 +25,9 @@ export default function TodoForm() {
     }
 
     if (!todo) {
-      dispatch(addTodo(title));
+      postTodo({ title });
     } else {
-      dispatch(updateTodo({...todo, title}));
+      dispatch(updateTodo({ ...todo, title }));
       dispatch(setTodo(null));
     }
 

@@ -4,13 +4,17 @@ const router = require("express").Router();
 
 const car = require("../controllers/car");
 
+const {isLogin, isAdmin } = require("../middlewares/permissions");
+
+const idValidation = require("../middlewares/idValidation");
+
 router.route("/")
   .get(car.list)
-  .post(car.create);
+  .post(isLogin, isAdmin, car.create);
 
 router.route("/:id")
-  .get(car.read)
-  .put(car.update)
-  .delete(car.deletee);
+  .get(idValidation, car.read)
+  .put( isLogin, isAdmin, idValidation, car.update)
+  .delete(isLogin, isAdmin, idValidation, car.deletee);
 
 module.exports = router;

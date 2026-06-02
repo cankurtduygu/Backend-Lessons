@@ -12,6 +12,8 @@ router.use("/auth", require("./auth"));
 router.use("/users", require("./user"));
 // car: 
 router.use("/cars", require("./car"));
+// reservation: 
+router.use("/reservations", require("./reservation"));
 
 
 // document:

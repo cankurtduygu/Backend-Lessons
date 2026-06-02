@@ -19,13 +19,11 @@ export const TodoSlice = createSlice({
   name: "Todo",
   initialState,
   reducers: {
-    addTodo: (state, { payload }: PayloadAction<string>) => {
-      state.todos.push({
-        id: new Date().getTime().toString(),
-        title: payload,
-        isDone: false,
-        createdAt: new Date().toISOString(),
-      });
+    setTodos: (state, { payload }: PayloadAction<ITodo[]>) => {
+      state.todos = payload;
+    },
+    addTodo: (state, { payload }: PayloadAction<ITodo>) => {
+      state.todos.push(payload);
     },
     deleteTodo: (state, { payload }: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== payload);
@@ -46,7 +44,7 @@ export const TodoSlice = createSlice({
   },
 });
 
-export const { addTodo, deleteTodo, updateTodo, toggleIsDone, setTodo } =
+export const { addTodo, deleteTodo, updateTodo, toggleIsDone, setTodo, setTodos } =
   TodoSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

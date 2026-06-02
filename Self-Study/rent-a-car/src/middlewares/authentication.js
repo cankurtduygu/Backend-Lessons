@@ -14,14 +14,16 @@ module.exports = (req, res, next) => {
     // jwt.verify(jwt, secretKey, cb)
 
     // asycron
-    jwt.verify(tokenArr[1], process.env.ACCESS_KEY, (err, accessData) => {
-      //  console.log(err);
-      //  console.log(accessData);
+      jwt.verify(tokenArr[1], process.env.ACCESS_KEY, (err, accessData) => {
+        // console.log(err);
+        // console.log(accessData);
 
       // next icerisine yazdigmiz hatayi middleware errorhandlera yonlderiri
       if (err) return next(new CustomError(`JWT Error: ${err.message}`, 401));
 
       req.user = accessData;
+      
+      
     });
   }
 

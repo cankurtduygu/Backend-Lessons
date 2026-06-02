@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-const Car = require("../models/cars");
+const Car = require('../models/cars');
 
 module.exports = {
   list: async (req, res) => {
-    const result = await res.getModelList(Car, ["createdId", "updatedId"]);
+    const result = await res.getModelList(Car, ['createdId', 'updatedId']);
 
     res.status(200).send({
       error: false,
@@ -26,9 +26,13 @@ module.exports = {
 
   read: async (req, res) => {
     const result = await Car.findOne({ _id: req.params.id }).populate([
-      "createdId",
-      "updatedId",
+      'createdId',
+      'updatedId',
     ]);
+
+    if (!result) {
+      throw new CustomError("Car not found", 404);
+    }
 
     res.status(200).send({
       error: false,
@@ -37,11 +41,11 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    req.body.updatedId = req.user?._id;
+    req.body.updatedId = req.user?._id; //Kim update ediyor
 
     const result = await Car.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
+      { _id: req.params.id }, //URL’den gelen bilgi/id bilgisi
+      req.body, //ne ile update edilecek
       {
         runValidators: true,
         new: true,
@@ -50,7 +54,7 @@ module.exports = {
 
     res.status(202).send({
       error: false,
-      result,
+      result, //bana update edilen datayı geri ver
     });
   },
 
@@ -60,7 +64,7 @@ module.exports = {
     if (!result.deletedCount) {
       return res.status(404).send({
         error: true,
-        message: "Data is not found or already deleted.",
+        message: 'Data is not found or already deleted.',
       });
     }
 

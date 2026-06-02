@@ -12,16 +12,29 @@ const PORT = process.env.PORT || 8001;
 /* ----------------------------------------------------- */
 // Middlewares:
 
+const cors = require("cors");
+
+const corsOptions = {
+  origin: ["http://localhost:5173"],
+  methods: "GET, PUT, POST, DELETE",
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["Content-Length", "X-Custom-Header"],
+  credentials: true, // allow cookies/auth header
+  optionsSuccessStatus: 200,
+  maxAge: 86400, // cache preflight for 1 day
+};
+
+app.use(cors(corsOptions));
+
+
 // Accept json data
 app.use(express.json());
 
 /* ----------------------------------------------------- */
 // Routes:
-// const todoRouter = require('./src/routes/todoRouter');
-// app.use(todoRouter)
 
 // Todo route
-app.use(require("./src/routes/todoRouter"));
+app.use('/api/todos', require("./src/routes/todoRouter"));
 
 // Not found route
 app.all("/*splat", (req, res) => {

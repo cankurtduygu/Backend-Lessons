@@ -6,13 +6,27 @@ GET {{baseUrl}}
 @accessToken = Bearer {{login.response.body.bearer.access}}
 
 ###
+# @name register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "evil",
+  "email": "evil@test.com",
+  "password": "123456",
+  "firstName": "Evil",
+  "lastName": "User",
+}
+
+
+###
 # @name login
 post {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin@test.com",
-    "password": "1234"
+    "email": "musa@test.com",
+    "password": "123456"
 }
 
 ### 
@@ -33,7 +47,9 @@ Content-Type: application/json
 
 ###
 # @name userList
+
 get {{baseUrl}}/users/
+Authorization: {{accessToken}}
 
 ###
 # @name userRead
@@ -80,12 +96,77 @@ Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "plateNumber": "PF-AA-123",
-  "brand": "BMW",
-  "model": "320i",
-  "year": 2022,
-  "isAutomatic": true,
-  "pricePerDay": 85
+    "plateNumber": "PF-PP-116",
+    "brand": "Fiat",
+    "model": "Egea",
+    "year": 2019,
+    "isAutomatic": false,
+    "pricePerDay": 38
+  }
+
+###
+# @name carRead
+get {{baseUrl}}/cars/6a1e88911ee8044bbd0bbb8f
+
+
+###
+# @name carUpdate
+put {{baseUrl}}/cars/6a1e88911ee8044bbd0bbb8f
+Content-Type: application/json
+
+{
+  "pricePerDay": 100
 }
 
 ###
+# @name carDelete
+delete {{baseUrl}}/cars/6a1d2dbb040a876fbc695f30
+Authorization: {{accessToken}
+
+
+
+
+###
+# @name reservationList
+GET {{baseUrl}}/reservations
+Authorization: {{accessToken}}
+
+
+
+###
+# @name createReservation
+POST {{baseUrl}}/reservations
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+  "carId": "6a1ecbfd506e6f42fe816dd8",
+  "startDate": "2026-07-11",
+  "endDate": "2026-07-20"
+}
+
+###
+# @name reservationRead
+get {{baseUrl}}/reservations/6a1e88911ee8044bbd0bbb8f
+Authorization: {{accessToken}}
+
+
+###
+# @name reservationUpdate
+put {{baseUrl}}/reservations/6a1e88911ee8044bbd0bbb8f
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+  "startDate": "2023-10-01",
+  "endDate": "2023-10-10"
+}
+
+###
+# @name reservationDelete
+delete {{baseUrl}}/reservations/6a1d2dbb040a876fbc695f30
+Authorization: {{accessToken}}
+
+
+
+
