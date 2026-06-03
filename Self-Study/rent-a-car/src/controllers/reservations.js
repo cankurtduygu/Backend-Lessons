@@ -6,11 +6,21 @@ const { CustomError } = require('../helpers');
 
 module.exports = {
   list: async (req, res) => {
-    const result = await res.getModelList(Reservation, ['userId', 'carId']);
+    const customFilter = {};
+
+    if (!req.user.isAdmin) {
+      customFilter.userId = req.user._id;
+    }
+
+    const result = await res.getModelList(
+      Reservation,
+      ['userId', 'carId'],
+      customFilter
+    );
 
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(Reservation),
+      details: await res.getModelListDetails(Reservation, customFilter),
       result,
     });
   },
@@ -68,7 +78,15 @@ module.exports = {
   },
 
   read: async (req, res) => {
-    const result = await Reservation.findOne({ _id: req.params.id }).populate([
+    const filter = {
+      _id: req.params.id,
+    };
+
+    if (!req.user.isAdmin) {
+      filter.userId = req.user?._id;
+    }
+
+    const result = await Reservation.findOne(filter).populate([
       'userId',
       'carId',
     ]);
@@ -84,8 +102,8 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    req.body.userId = req.user?._id; //Kim update ediyor
-
+    delete req.body.userId;
+    
     const result = await Reservation.findOneAndUpdate(
       { _id: req.params.id }, //URL’den gelen bilgi/id bilgisi
       req.body, //ne ile update edilecek
@@ -94,6 +112,10 @@ module.exports = {
         new: true,
       }
     );
+
+    if (!result) {
+      throw new CustomError('Reservation not found.', 404);
+    }
 
     res.status(202).send({
       error: false,
@@ -105,10 +127,7 @@ module.exports = {
     const result = await Reservation.deleteOne({ _id: req.params.id });
 
     if (!result.deletedCount) {
-      return res.status(404).send({
-        error: true,
-        message: 'Data is not found or already deleted.',
-      });
+      throw new CustomError('Reservation not found or already deleted.', 404);
     }
 
     res.sendStatus(204);

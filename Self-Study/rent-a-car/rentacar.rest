@@ -90,6 +90,11 @@ GET {{baseUrl}}/cars
 Authorization: {{accessToken}}
 
 ###
+# @name carAvailableList
+GET {{baseUrl}}/cars/available?startDate=2026-07-01&endDate=2026-07-05&filter[brand]=Mercedes
+Authorization: {{accessToken}}
+
+###
 # @name createCar
 POST {{baseUrl}}/cars
 Authorization: {{accessToken}}
@@ -124,8 +129,6 @@ delete {{baseUrl}}/cars/6a1d2dbb040a876fbc695f30
 Authorization: {{accessToken}
 
 
-
-
 ###
 # @name reservationList
 GET {{baseUrl}}/reservations
@@ -140,14 +143,14 @@ Authorization: {{accessToken}}
 Content-Type: application/json
 
 {
-  "carId": "6a1ecbfd506e6f42fe816dd8",
-  "startDate": "2026-07-11",
-  "endDate": "2026-07-20"
+  "carId": "6a1ec8f2176c194d588ede48",
+  "startDate": "2026-07-01",
+  "endDate": "2026-07-05"
 }
 
 ###
 # @name reservationRead
-get {{baseUrl}}/reservations/6a1e88911ee8044bbd0bbb8f
+get {{baseUrl}}/reservations/6a1f518201d57fbc2376cb83
 Authorization: {{accessToken}}
 
 

@@ -8,6 +8,9 @@ const {isLogin, isAdmin } = require("../middlewares/permissions");
 
 const idValidation = require("../middlewares/idValidation");
 
+router.route("/available")
+  .get(car.available);
+
 router.route("/")
   .get(car.list)
   .post(isLogin, isAdmin, car.create);

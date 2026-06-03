@@ -3,6 +3,8 @@
 const express = require('express');
 const app = express();
 
+app.set('query parser', 'extended');
+
 require('dotenv').config();
 const PORT = process.env?.PORT || 8000;
 

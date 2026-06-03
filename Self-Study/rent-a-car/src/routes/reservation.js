@@ -14,7 +14,7 @@ router.route("/")
 
 router.route("/:id")
   .get(idValidation, reservation.read)
-  .put( isLogin, idValidation, reservation.update)
+  .put( isLogin, isAdmin, idValidation, reservation.update)
   .delete(isLogin, isAdmin, idValidation, reservation.deletee);
 
 module.exports = router;
