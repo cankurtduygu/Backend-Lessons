@@ -59,10 +59,22 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    /* 
-            #swagger.tags = ['Users']
-            #swagger.summary = 'Update User'
-        */
+    /*
+      #swagger.tags = ["Users"]
+      #swagger.summary = "Update User"
+      #swagger.parameters['body'] = {
+        in: 'body',
+        required: true,
+        schema: {
+            "username": "test",
+            "password": "1234",
+            "email": "test@site.com",
+            "isActive": true,
+            "isStaff": false,
+            "isAdmin": false,
+        }
+      }
+    */
 
     const result = await User.findOneAndUpdate(
       { _id: req.params.id },

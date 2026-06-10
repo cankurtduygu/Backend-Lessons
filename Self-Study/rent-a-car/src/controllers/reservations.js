@@ -38,7 +38,7 @@ module.exports = {
 
     //Date'ler string olarak gelirse Date objesine çevirelim
     if (new Date(startDate) >= new Date(endDate)) {
-      throw new CustomError('Start date must be before end date.', 400);
+      
     }
 
     const sameClientConflict = await Reservation.findOne({
