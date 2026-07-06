@@ -84,8 +84,8 @@ post {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "email": "admin@test.com",
+    "username": "admin15",
+    "email": "admin15@test.com",
     "password": "1234",
     "isAdmin": true
 }
